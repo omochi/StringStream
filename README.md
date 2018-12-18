@@ -1,0 +1,3 @@
+# StringStream
+
+Streaming String IO.
