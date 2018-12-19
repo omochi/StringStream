@@ -3,37 +3,53 @@ import Foundation
 public class CharacterReader {
     public init(handle: FileHandleProtocol) throws {
         self.reader = try UTF8Reader(handle: handle)
-        self.buffer = ""
+        self.buffer = Buffer(start: reader.position,
+                             tokens: [],
+                             string: "")
     }
     
     private let reader: UTF8Reader
     
     public var position: Int {
-        return reader.position
+        return buffer.start
     }
     
-    private var buffer: String
+    private struct Token {
+        public var length: Int
+        public var scalar: Unicode.Scalar
+    }
+    
+    private struct Buffer {
+        public var start: Int
+        public var tokens: [Token]
+        public var string: String
+    }
+    
+    private var buffer: Buffer
 
     public func read() throws -> Character? {
         while true {
-            if buffer.count >= 2 {
+            if buffer.string.count >= 2 {
                 return takeHeadChar()
             }
             
-            precondition(buffer.count <= 1)
+            precondition(buffer.string.count <= 1)
             
+            let pos = reader.position
             let element = try reader.read()
             switch element {
             case .scalar(let scalar):
-                buffer.unicodeScalars.append(scalar)
+                let length = reader.position - pos
+                buffer.tokens.append(Token(length: length, scalar: scalar))
+                buffer.string.unicodeScalars.append(scalar)
             case .end:
-                if buffer.count > 0 {
+                if buffer.string.count > 0 {
                     return takeHeadChar()
                 }
                 
                 return nil
             case .invalid:
-                if buffer.count > 0 {
+                if buffer.string.count > 0 {
                     return takeHeadChar()
                 }
             }
@@ -41,15 +57,26 @@ public class CharacterReader {
     }
     
     private func takeHeadChar() -> Character {
-        let startIndex = buffer.startIndex
-        let char = buffer[startIndex]
-        let nextIndex = buffer.index(after: startIndex)
-        buffer = String(buffer[nextIndex...])
+        let string = buffer.string
+        
+        let startIndex = string.startIndex
+        let char = string[startIndex]
+        let nextIndex = string.index(after: startIndex)
+        buffer.string = String(string[nextIndex...])
+        
+        let n = char.unicodeScalars.count
+        for i in 0..<n {
+            buffer.start += buffer.tokens[i].length
+        }
+        buffer.tokens.removeFirst(n)
+
         return char
     }
     
     public func seek(to position: Int) throws {
-        buffer = ""
+        buffer = Buffer(start: position,
+                        tokens: [],
+                        string: "")
         try reader.seek(to: position)
     }
 }

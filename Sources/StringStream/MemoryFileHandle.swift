@@ -33,7 +33,7 @@ public class MemoryFileHandle : FileHandleProtocol {
     }
     
     public func seek(to position: Int) throws {
-        guard 0 <= position && position < data.count else {
+        guard 0 <= position && position <= data.count else {
             throw Error.outOfBounds
         }
         self._position = position

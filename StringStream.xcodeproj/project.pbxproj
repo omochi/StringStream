@@ -25,6 +25,8 @@
 		D60A853221C9585C00174BD3 /* FileHandleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60A853121C9585C00174BD3 /* FileHandleProtocol.swift */; };
 		D60A853421C9588900174BD3 /* MemoryFileHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60A853321C9588900174BD3 /* MemoryFileHandle.swift */; };
 		D60A853921C9640E00174BD3 /* CharacterReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60A853721C963E300174BD3 /* CharacterReaderTests.swift */; };
+		D6F4E88221C9D88D0006646F /* CSVReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4E88121C9D88D0006646F /* CSVReader.swift */; };
+		D6F4E88421C9E3340006646F /* CSVReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4E88321C9E3340006646F /* CSVReaderTests.swift */; };
 		OBJ_27 /* FileHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* FileHandle.swift */; };
 		OBJ_28 /* PosixError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* PosixError.swift */; };
 		OBJ_29 /* UTF8Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* UTF8Extension.swift */; };
@@ -57,6 +59,8 @@
 		D60A853121C9585C00174BD3 /* FileHandleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHandleProtocol.swift; sourceTree = "<group>"; };
 		D60A853321C9588900174BD3 /* MemoryFileHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryFileHandle.swift; sourceTree = "<group>"; };
 		D60A853721C963E300174BD3 /* CharacterReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterReaderTests.swift; sourceTree = "<group>"; };
+		D6F4E88121C9D88D0006646F /* CSVReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVReader.swift; sourceTree = "<group>"; };
+		D6F4E88321C9E3340006646F /* CSVReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVReaderTests.swift; sourceTree = "<group>"; };
 		OBJ_10 /* FileHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHandle.swift; sourceTree = "<group>"; };
 		OBJ_11 /* PosixError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosixError.swift; sourceTree = "<group>"; };
 		OBJ_12 /* UTF8Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTF8Extension.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 				D60A853721C963E300174BD3 /* CharacterReaderTests.swift */,
 				OBJ_16 /* UTF8ReaderTests.swift */,
 				OBJ_17 /* XCTestManifests.swift */,
+				D6F4E88321C9E3340006646F /* CSVReaderTests.swift */,
 			);
 			name = StringStreamTests;
 			path = Tests/StringStreamTests;
@@ -115,7 +120,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -123,7 +128,6 @@
 				OBJ_14 /* Tests */,
 				OBJ_18 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -144,6 +148,7 @@
 				OBJ_13 /* UTF8Reader.swift */,
 				D60A852F21C9566B00174BD3 /* CharacterReader.swift */,
 				D60A853321C9588900174BD3 /* MemoryFileHandle.swift */,
+				D6F4E88121C9D88D0006646F /* CSVReader.swift */,
 			);
 			name = StringStream;
 			path = Sources/StringStream;
@@ -214,7 +219,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_18 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,6 +238,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_27 /* FileHandle.swift in Sources */,
+				D6F4E88221C9D88D0006646F /* CSVReader.swift in Sources */,
 				D60A853421C9588900174BD3 /* MemoryFileHandle.swift in Sources */,
 				OBJ_28 /* PosixError.swift in Sources */,
 				OBJ_29 /* UTF8Extension.swift in Sources */,
@@ -255,6 +261,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_48 /* UTF8ReaderTests.swift in Sources */,
+				D6F4E88421C9E3340006646F /* CSVReaderTests.swift in Sources */,
 				D60A853921C9640E00174BD3 /* CharacterReaderTests.swift in Sources */,
 				OBJ_49 /* XCTestManifests.swift in Sources */,
 			);
