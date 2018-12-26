@@ -169,21 +169,12 @@ public class CSVReader {
             return .doubleQuote
         case Character(","):
             return .comma
+        case Character("\r\n"):
+            return .newLine(String(char))
         case Character("\n"):
             return .newLine(String(char))
         case Character("\r"):
-            let pos = reader.position
-            guard let char2 = try reader.read() else {
-                try reader.seek(to: pos)
-                return .newLine(String(char))
-            }
-            switch char2 {
-            case Character("\n"):
-                return .newLine(String([char, char2]))
-            default:
-                try reader.seek(to: pos)
-                return .newLine(String(char))
-            }
+            return .newLine(String(char))
         default:
             return .character(char)
         }

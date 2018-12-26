@@ -100,8 +100,9 @@ public class UTF8Reader {
                 return nil
             }
         }
-        
-        let byte = buffer.data[buffer.position]
+
+        let index = buffer.data.index(buffer.data.startIndex, offsetBy: buffer.position)
+        let byte = buffer.data[index]
         buffer.position += 1
         return byte
     }
