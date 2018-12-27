@@ -10,9 +10,9 @@ world",
 "😀",,"",🧒🏼👩🏾‍🦱
 """
                 
-        let expected: [CSVReader.Row] = [
-            CSVReader.Row(columns: ["🌍", "🇵🇷", "hello\nworld", ""]),
-            CSVReader.Row(columns: ["😀", "", "", "🧒🏼👩🏾‍🦱"])
+        let expected: [CSV.Row] = [
+            CSV.Row(columns: ["🌍", "🇵🇷", "hello\nworld", ""]),
+            CSV.Row(columns: ["😀", "", "", "🧒🏼👩🏾‍🦱"])
         ]
         
         let data = csv.data(using: .utf8)!
@@ -25,9 +25,9 @@ world",
     func testCRLF() throws {
         let csv = "a,b\r\nc,d"
         
-        let expected: [CSVReader.Row] = [
-            CSVReader.Row(columns: ["a", "b"]),
-            CSVReader.Row(columns: ["c", "d"]),
+        let expected: [CSV.Row] = [
+            CSV.Row(columns: ["a", "b"]),
+            CSV.Row(columns: ["c", "d"]),
         ]
         
         let data = csv.data(using: .utf8)!

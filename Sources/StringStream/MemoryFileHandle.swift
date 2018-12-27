@@ -20,11 +20,13 @@ public class MemoryFileHandle : FileHandleProtocol {
     
     public func write(data chunk: Data) throws {
         let rem = data.count - _position
-        guard chunk.count <= rem else {
-            throw Error.overflow
-        }
         let size = chunk.count
-        data[_position..<(_position + size)] = chunk
+        
+        if rem < size {
+            data[_position...] = chunk
+        } else {
+            data[_position..<(_position + size)] = chunk
+        }
         _position += size
     }
     

@@ -107,3 +107,18 @@ public class UTF8Reader {
         return byte
     }
 }
+
+extension UTF8Reader {
+    public func readAll() throws -> [UTF8Reader.Element] {
+        var ret = [UTF8Reader.Element]()
+        while true {
+            let elem = try self.read()
+            ret.append(elem)
+            if case .end = elem {
+                break
+            }
+        }
+        return ret
+    }
+}
+

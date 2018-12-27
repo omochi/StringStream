@@ -80,3 +80,17 @@ public class CharacterReader {
         try reader.seek(to: position)
     }
 }
+
+extension CharacterReader {
+    public func readAll() throws -> [Character] {
+        var ret = [Character]()
+        while true {
+            guard let char = try self.read() else {
+                break
+            }
+            ret.append(char)
+        }
+        return ret
+    }
+}
+

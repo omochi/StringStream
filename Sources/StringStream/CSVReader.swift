@@ -14,16 +14,8 @@ public class CSVReader {
     
     private let handle: FileHandleProtocol
     private let reader: CharacterReader
-    
-    public struct Row : Equatable {
-        public var columns: [String]
-        
-        public init(columns: [String]) {
-            self.columns = columns
-        }
-    }
-    
-    public func readRow() throws -> Row? {
+
+    public func readRow() throws -> CSV.Row? {
         let pos0 = reader.position
         let token0 = try readToken()
     
@@ -32,7 +24,7 @@ public class CSVReader {
         switch token0 {
         case .end: return nil
         case .newLine:
-            return Row(columns: columns)
+            return CSV.Row(columns: columns)
         default:
             try reader.seek(to: pos0)
             let column = try readColumn()
@@ -43,7 +35,7 @@ public class CSVReader {
             let token = try readToken()
             switch token {
             case .end, .newLine:
-                return Row(columns: columns)
+                return CSV.Row(columns: columns)
             case .comma:
                 break
             default:
@@ -54,17 +46,7 @@ public class CSVReader {
             columns.append(column)
         }
     }
-    
-    public func readAll() throws -> [Row] {
-        var rows = [Row]()
-        while true {
-            guard let row = try readRow() else {
-                return rows
-            }
-            rows.append(row)
-        }
-    }
-    
+
     private func readColumn() throws -> String {
         let pos = reader.position
         let token = try readToken()
@@ -177,6 +159,18 @@ public class CSVReader {
             return .newLine(String(char))
         default:
             return .character(char)
+        }
+    }
+}
+
+extension CSVReader {
+    public func readAll() throws -> [CSV.Row] {
+        var rows = [CSV.Row]()
+        while true {
+            guard let row = try readRow() else {
+                return rows
+            }
+            rows.append(row)
         }
     }
 }

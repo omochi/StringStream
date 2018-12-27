@@ -19,18 +19,3 @@ final class UTF8ReaderTests: XCTestCase {
         XCTAssertEqual(actual, expected, file: file, line: line)
     }
 }
-
-extension UTF8Reader {
-    fileprivate func readAll() throws -> [UTF8Reader.Element] {
-        var ret = [UTF8Reader.Element]()
-        while true {
-            let elem = try self.read()
-            ret.append(elem)
-            if case .end = elem {
-                break
-            }
-        }
-        return ret
-    }
-}
-

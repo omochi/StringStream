@@ -21,17 +21,3 @@ final class CharacterReaderTests: XCTestCase {
         XCTAssertEqual(actual, expected, file: file, line: line)
     }
 }
-
-extension CharacterReader {
-    fileprivate func readAll() throws -> [Character] {
-        var ret = [Character]()
-        while true {
-            guard let char = try self.read() else {
-                break
-            }
-            ret.append(char)
-        }
-        return ret
-    }
-}
-
