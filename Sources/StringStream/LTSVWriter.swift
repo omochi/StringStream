@@ -18,6 +18,10 @@ public class LTSVWriter {
 }
 
 extension LTSVWriter {
+    public convenience init(path: URL) throws {
+        try self.init(handle: FileHandle(path: path, mode: "w"))
+    }
+
     public func writeAll(rows: [LTSV.Row]) throws {
         for row in rows {
             try write(row: row)

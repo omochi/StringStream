@@ -164,6 +164,10 @@ public class CSVReader {
 }
 
 extension CSVReader {
+    public convenience init(path: URL) throws {
+        try self.init(handle: FileHandle(path: path, mode: "r"))
+    }
+
     public func readAll() throws -> [CSV.Row] {
         var rows = [CSV.Row]()
         while true {

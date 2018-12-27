@@ -55,6 +55,10 @@ public class LTSVReader {
 }
 
 extension LTSVReader {
+    public convenience init(path: URL) throws {
+        try self.init(reader: CharacterReader(path: path))
+    }
+
     public func readAll() throws -> [LTSV.Row] {
         var ret = [LTSV.Row]()
         while true {

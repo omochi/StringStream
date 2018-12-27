@@ -82,6 +82,10 @@ public class CharacterReader {
 }
 
 extension CharacterReader {
+    public convenience init(path: URL) throws {
+        try self.init(handle: FileHandle(path: path, mode: "r"))
+    }
+
     public func readAll() throws -> [Character] {
         var ret = [Character]()
         while true {

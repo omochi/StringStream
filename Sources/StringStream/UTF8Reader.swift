@@ -109,6 +109,10 @@ public class UTF8Reader {
 }
 
 extension UTF8Reader {
+    public convenience init(path: URL) throws {
+        try self.init(handle: FileHandle(path: path, mode: "r"))
+    }
+    
     public func readAll() throws -> [UTF8Reader.Element] {
         var ret = [UTF8Reader.Element]()
         while true {
